@@ -44,7 +44,7 @@ if (conn) return conn.release();
 
 });
 
-app.get('/weatherAll',async (req,res) => {
+app.get('/weather-Aal',async (req,res) => {
 let conn;
 try {
 

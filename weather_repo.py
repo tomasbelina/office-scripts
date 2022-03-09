@@ -9,6 +9,6 @@ session = Session()
 
 def addWeather(humidity, pressure, cpu_temp, indoor_temp, outdoor_temp):
     newWeather = Weather(humidity=humidity, pressure=pressure,
-                         cpu_temp=cpu_temp, indoor_temp=indoor_temp, outdoor_temp=outdoor_temp)
+                         cpuTemp=cpu_temp, indoorTemp=indoor_temp, outdoorTemp=outdoor_temp)
     session.add(newWeather)
     session.commit()

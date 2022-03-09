@@ -3,6 +3,12 @@ import smbus2
 from gpiozero import CPUTemperature
 from ds18b20 import DS18B20
 from weather_repo import addWeather
+import requests
+from dotenv import load_dotenv
+from os.path import join, dirname
+
+dotenv_path = join(dirname(__file__), '.env')
+load_dotenv(dotenv_path)
 
 port = 1
 address = 0x76
@@ -21,3 +27,6 @@ sensor = DS18B20()
 outdoor_temp = sensor.get_temperature()
 
 addWeather(humidity, pressure, cpu.temperature, temperature, outdoor_temp)
+
+secret = os.environ.get('SECRET')
+requests.get(f"http://127.0.0.1:3000/revalidate?secret={secret}")

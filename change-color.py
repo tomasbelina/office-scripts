@@ -45,6 +45,7 @@ try:
             strip.setPixelColor(
                 i, Color(colorRGBBelca[0], colorRGBBelca[1], colorRGBBelca[2]))
             strip.show()
+        time.sleep(10)
 except KeyboardInterrupt:
     for i in range(0, 150):
         strip.setPixelColor(

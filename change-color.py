@@ -8,18 +8,28 @@ import sys
 Session = sqlalchemy.orm.sessionmaker()
 Session.configure(bind=engine)
 session = Session()
-type = "COLOR_JIRI"
-if(len(sys.argv) == 2 and sys.argv[1] == "Belca"):
-    type = "COLOR_BELCA"
 
-settings = session.query(Settings).filter(
-    Settings.type == type).one()
+settingsJiri = session.query(Settings).filter(
+    Settings.type == "COLOR_JIRI").one()
+settingsBelca = session.query(Settings).filter(
+    Settings.type == "COLOR_BELCA").one()
 
-print(settings.type)
-print(settings.value)
-color = settings.value.lstrip("#")
+print(settingsJiri.type)
+print(settingsJiri.value)
+color = settingsJiri.value.lstrip("#")
 colorRGB = tuple(int(color[i:i+2], 16) for i in (0, 2, 4))
-print('RGB =', colorRGB )
+print('RGB =', colorRGB)
 
-pixels = neopixel.NeoPixel(board.D18, 30)
+print(settingsBelca.type)
+print(settingsBelca.value)
+color = settingsBelca.value.lstrip("#")
+colorRGB = tuple(int(color[i:i+2], 16) for i in (0, 2, 4))
+print('RGB =', colorRGB)
+
+pixel_pin = board.D18
+num_pixels = 150
+ORDER = neopixel.RGB
+pixels = neopixel.NeoPixel(
+    pixel_pin, num_pixels, brightness=0.2, auto_write=False, pixel_order=ORDER
+)
 pixels.fill(colorRGB)

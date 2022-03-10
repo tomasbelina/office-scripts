@@ -43,6 +43,6 @@ strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA,
 strip.begin()
 
 for i in range(strip.numPixels()):
-    strip.setPixelColor(i, Color(colorJiri))
+    strip.setPixelColor(i, Color(colorJiri[0],colorJiri[1],colorJiri[2]))
     strip.show()
     time.sleep(50 / 1000.0)

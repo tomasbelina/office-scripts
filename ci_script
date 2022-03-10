@@ -1,0 +1,14 @@
+#!/bin/bash
+
+cd ./office-dashboard
+git pull
+npm install
+npx prisma generate
+npm run build
+pm2 reload next
+
+# refresh
+export DISPLAY=":0"
+WID=$(xdotool search --onlyvisible --class chromium|head -1)
+xdotool windowactivate ${WID}
+xdotool key ctrl+F5

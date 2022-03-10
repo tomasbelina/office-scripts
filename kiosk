@@ -1,0 +1,8 @@
+#!/bin/bash
+xset -dpms
+xset s off
+xset s noblank
+matchbox-window-manager -use_titlebar no &
+unclutter &
+
+chromium-browser --display=:0 --kiosk --incognito --window-position=0,0 http://127.0.0.1:3000

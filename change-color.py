@@ -44,3 +44,5 @@ for i in range(87, 150):
     strip.setPixelColor(
         i, Color(colorRGBBelca[0], colorRGBBelca[1], colorRGBBelca[2]))
     strip.show()
+
+print("ok")

@@ -41,8 +41,8 @@ strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA,
                    LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
 # Intialize the library (must be called once before other functions).
 strip.begin()
-print(colorJiri[0],colorJiri[1],colorJiri[2])
+print(colorRGBJiri[0],colorRGBJiri[1],colorRGBJiri[2])
 for i in range(strip.numPixels()):
-    strip.setPixelColor(i, Color(colorJiri[0],colorJiri[1],colorJiri[2]))
+    strip.setPixelColor(i, Color(colorRGBJiri[0],colorRGBJiri[1],colorRGBJiri[2]))
     strip.show()
     time.sleep(50 / 1000.0)

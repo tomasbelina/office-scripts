@@ -24,31 +24,23 @@ strip = PixelStrip(LED_COUNT, LED_PIN, LED_FREQ_HZ, LED_DMA,
                    LED_INVERT, LED_BRIGHTNESS, LED_CHANNEL)
 # Intialize the library (must be called once before other functions).
 strip.begin()
-try:
-    while True:
-        with(session.begin()):
-            settingsJiri = session.query(Settings).filter(
-                Settings.type == "COLOR_JIRI").one()
-            settingsBelca = session.query(Settings).filter(
-                Settings.type == "COLOR_BELCA").one()
-            colorJiri = settingsJiri.value.lstrip("#")
-            colorRGBJiri = tuple(int(colorJiri[i:i+2], 16) for i in (0, 2, 4))
-            colorBelca = settingsBelca.value.lstrip("#")
-            colorRGBBelca = tuple(
-                int(colorBelca[i:i+2], 16) for i in (0, 2, 4))
 
-            for i in range(0, 87):
-                strip.setPixelColor(
-                    i, Color(colorRGBJiri[0], colorRGBJiri[1], colorRGBJiri[2]))
-                strip.show()
+settingsJiri = session.query(Settings).filter(
+    Settings.type == "COLOR_JIRI").one()
+settingsBelca = session.query(Settings).filter(
+    Settings.type == "COLOR_BELCA").one()
+colorJiri = settingsJiri.value.lstrip("#")
+colorRGBJiri = tuple(int(colorJiri[i:i+2], 16) for i in (0, 2, 4))
+colorBelca = settingsBelca.value.lstrip("#")
+colorRGBBelca = tuple(
+    int(colorBelca[i:i+2], 16) for i in (0, 2, 4))
 
-            for i in range(87, 150):
-                strip.setPixelColor(
-                    i, Color(colorRGBBelca[0], colorRGBBelca[1], colorRGBBelca[2]))
-                strip.show()
-        time.sleep(1)
-except KeyboardInterrupt:
-    for i in range(0, 150):
-        strip.setPixelColor(
-            i, Color(0, 0, 0))
-        strip.show()
+for i in range(0, 87):
+    strip.setPixelColor(
+        i, Color(colorRGBJiri[0], colorRGBJiri[1], colorRGBJiri[2]))
+    strip.show()
+
+for i in range(87, 150):
+    strip.setPixelColor(
+        i, Color(colorRGBBelca[0], colorRGBBelca[1], colorRGBBelca[2]))
+    strip.show()

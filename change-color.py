@@ -1,3 +1,5 @@
+import board
+import neopixel
 from api import engine
 import sqlalchemy
 from settings import Settings
@@ -18,3 +20,6 @@ print(settings.value)
 color = settings.value.lstrip("#")
 colorRGB = tuple(int(color[i:i+2], 16) for i in (0, 2, 4))
 print('RGB =', colorRGB )
+
+pixels = neopixel.NeoPixel(board.D18, 30)
+pixels.fill(colorRGB)

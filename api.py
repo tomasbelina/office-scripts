@@ -17,4 +17,4 @@ engine = sqlalchemy.create_engine(
 def get_session():
     Session = sqlalchemy.orm.sessionmaker()
     Session.configure(bind=engine)
-    session = Session()
+    return Session()

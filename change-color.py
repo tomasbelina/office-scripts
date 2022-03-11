@@ -39,12 +39,12 @@ colorRGBBelca = tuple(
 
 for i in range(LED_START, LED_MIDDLE):
     strip.setPixelColor(
-        i, Color(**colorRGBJiri))
+        i, Color(*colorRGBJiri))
     strip.show()
 
 for i in range(LED_MIDDLE, LED_COUNT):
     strip.setPixelColor(
-        i, Color(**colorRGBBelca))
+        i, Color(*colorRGBBelca))
     strip.show()
 
 print("ok")

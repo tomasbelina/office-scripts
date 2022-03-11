@@ -9,6 +9,8 @@ Session = sqlalchemy.orm.sessionmaker()
 Session.configure(bind=engine)
 session = Session()
 
+LED_START = 0
+LED_MIDDLE = 87
 LED_COUNT = 150        # Number of LED pixels.
 LED_PIN = 18          # GPIO pin connected to the pixels (18 uses PWM!).
 # LED_PIN = 10        # GPIO pin connected to the pixels (10 uses SPI /dev/spidev0.0).
@@ -35,14 +37,14 @@ colorBelca = settingsBelca.value.lstrip("#")
 colorRGBBelca = tuple(
     int(colorBelca[i:i+2], 16) for i in (0, 2, 4))
 
-for i in range(0, 87):
+for i in range(LED_START, LED_MIDDLE):
     strip.setPixelColor(
-        i, Color(colorRGBJiri[0], colorRGBJiri[1], colorRGBJiri[2]))
+        i, Color(**colorRGBJiri))
     strip.show()
 
-for i in range(87, 150):
+for i in range(LED_MIDDLE, LED_COUNT):
     strip.setPixelColor(
-        i, Color(colorRGBBelca[0], colorRGBBelca[1], colorRGBBelca[2]))
+        i, Color(**colorRGBBelca))
     strip.show()
 
 print("ok")

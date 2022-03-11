@@ -13,3 +13,8 @@ db_host = os.environ.get('MYSQL_HOST')
 
 engine = sqlalchemy.create_engine(
     "mariadb+mariadbconnector://" + db_user + ":" + db_password + "@" + db_host + ":3306/" + db_name)
+
+def get_session():
+    Session = sqlalchemy.orm.sessionmaker()
+    Session.configure(bind=engine)
+    session = Session()

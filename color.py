@@ -1,6 +1,5 @@
 from rpi_ws281x import PixelStrip, Color
-from api import engine
-import sqlalchemy
+from api import get_session
 from settings import Settings
 import time
 
@@ -24,10 +23,7 @@ class OfficeStrip:
         self._strip.begin()
 
     def set_desk_colors(self):
-        Session = sqlalchemy.orm.sessionmaker()
-        Session.configure(bind=engine)
-        session = Session()
-
+        session = get_session()
         settingsJiri = session.query(Settings).filter(
             Settings.type == "COLOR_JIRI").one()
         settingsBelca = session.query(Settings).filter(
